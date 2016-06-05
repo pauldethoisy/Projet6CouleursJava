@@ -152,22 +152,20 @@ public class Game {
 	
 	public void possibleColorPlay() {
 		char[] listColor = {'R','B','J','V','I','O'};
-		for (int i = 0; i < 6; i++) {
-			if (Main.nbPlayers == 2) {
-				if (getCharFromColor(players[0].getColorInit()) != listColor[i] && getCharFromColor(players[1].getColorInit()) != listColor[i]) {
-					System.out.print(compareControled(listColor[i]) + " | ");
-				}
-			} else if (Main.nbPlayers == 3) {
-				if ((getCharFromColor(players[0].getColorInit()) != listColor[i] && getCharFromColor(players[1].getColorInit()) != listColor[i]) && getCharFromColor(players[2].getColorInit()) != listColor[i]) {
-					System.out.print(compareControled(listColor[i]) + " | ");
-				}
-			} else if (Main.nbPlayers == 4) {
-				if (getCharFromColor(players[0].getColorInit()) != listColor[i] && getCharFromColor(players[1].getColorInit()) != listColor[i] && getCharFromColor(players[2].getColorInit()) != listColor[i] && getCharFromColor(players[3].getColorInit()) != listColor[i]) {
-					System.out.print(compareControled(listColor[i]) + " | ");
+		int n=6;
+		ArrayList<Character> list = new ArrayList<Character>(6);
+		for (int k = 0; k < n; k++) {
+			list.add(listColor[k]);
+		}
+		for (int i = 0; i < Main.nbPlayers; i++) {
+			for (int j = 0; j < n; j++) {
+				if (list.get(j) == getCharFromColor(players[i].getColorInit())) {
+					list.remove(j);
+					n--;
 				}
 			}
 		}
-		System.out.print("\n");
+		System.out.println(list);
 	}
 	
 	public static char getControled(char selectedColor) {
