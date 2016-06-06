@@ -38,21 +38,17 @@ public class Grille {
 	}
 	
 	public char getRandomChar(int max) {
+		char[] listOfChar = {'r', 'b', 'j', 'v', 'i', 'o'};
+		char c = ' ';
 		Random rand = new Random();
 		int randomColor = rand.nextInt(max);
-		if (randomColor == 0) {
-			return 'r';
-		} else if (randomColor == 1) {
-			return 'b';
-		} else if (randomColor == 2) {
-			return 'j';
-		} else if (randomColor == 3) {
-			return 'v';
-		} else if (randomColor == 4) {
-			return 'i';
-		} else {
-			return 'o';
+		for (int i = 0; i < max; i++) {
+			if (randomColor == i) {
+				c = listOfChar[i];
+				break;
+			}
 		}
+		return c;
 	}
 	
 	public char getCharFromGrid(int x, int y) {
